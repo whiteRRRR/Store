@@ -1,13 +1,21 @@
-version: '3.5'
+version: "3.9"
 
 services:
-  db:
-    container_name: db_container
-    image: postgres:13-alpine
+  postgres:
+    image: postgres:12
     env_file:
       - .env
-    volumes:
-      - /postgres_data:/var/lib/postgresql/data/
     ports:
       - "5432:5432"
+    volumes:
+      - data:/var/lib/postgresql/data
 
+  pg-admin:
+    image: dpage/pgadmin4:6
+    env_file:
+      - .env
+    ports:
+      - "5050:5050"
+
+volumes:
+  data:
