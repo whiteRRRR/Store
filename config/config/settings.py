@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Apps
-    'product.apps.Product',
+    'product.apps.ProductConfig',
+    'blog.apps.BlogConfig'
 ]
 
 MIDDLEWARE = [
@@ -110,8 +111,9 @@ USE_TZ = True
 
 # Asqar
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = []
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
 
 # Asqar
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
