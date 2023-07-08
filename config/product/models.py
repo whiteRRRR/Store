@@ -12,7 +12,7 @@ class Products(models.Model):
     description = models.TextField(blank=True, verbose_name='О товаре')
     price = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Цена товара')
     status_of_product = models.CharField(blank=True, max_length=100, verbose_name='Статус товара')
-    image = models.ImageField(upload_to="photos/%Y/%m/%d/", verbose_name='Основное изображение товара')
+    image = models.ImageField(upload_to="product_image/", verbose_name='Основное изображение товара')
     is_published = models.BooleanField(default=True, verbose_name='Опубликована')
     category = models.OneToOneField('ProductCategory', on_delete=models.PROTECT, verbose_name='Категория')
 
@@ -39,7 +39,7 @@ class ProductImages(models.Model):
     def content_file_name(instance, filename):
         ext = filename.split('.')[-1]
         filename = "%s.%s" % (instance.product.name, ext)
-        return os.path.join('uploads', filename)
+        return os.path.join('other_image', filename)
 
     product = models.OneToOneField('Products', on_delete=models.CASCADE, default=None)
     image = models.ImageField(upload_to=content_file_name)
