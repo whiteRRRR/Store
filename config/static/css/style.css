@@ -3663,7 +3663,7 @@ input:focus {
   filter: grayscale(0);
 }
 
-/* Feature Product Area css
+/* Feature ProductConfig Area css
 ============================================================================================ */
 /* line 4, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_product.scss */
 .single-product {
@@ -3760,9 +3760,9 @@ input:focus {
   color: #B08EAD;
 }
 
-/* End Feature Product Area css
+/* End Feature ProductConfig Area css
 ============================================================================================ */
-/* Start New Product Area css
+/* Start New ProductConfig Area css
 ============================================================================================ */
 /* line 95, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_product.scss */
 .new_product {
@@ -3796,9 +3796,9 @@ input:focus {
   margin-bottom: 25px;
 }
 
-/* End New Product Area css
+/* End New ProductConfig Area css
 ============================================================================================ */
-/* Start Product Area css
+/* Start ProductConfig Area css
 ============================================================================================ */
 /* line 128, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_product.scss */
 .most_product_inner {
@@ -3837,9 +3837,9 @@ input:focus {
   margin-bottom: 0px;
 }
 
-/* End Feature Product Area css
+/* End Feature ProductConfig Area css
 ============================================================================================ */
-/* Product Sidebar Area css
+/* ProductConfig Sidebar Area css
 ============================================================================================ */
 /* line 168, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_product.scss */
 .cat_product_area .btn_2 {
@@ -4309,9 +4309,9 @@ input:focus {
   }
 }
 
-/* End Product Sidebar Area css
+/* End ProductConfig Sidebar Area css
 ============================================================================================ */
-/* Single Product Area css
+/* Single ProductConfig Area css
 ============================================================================================ */
 /* line 603, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_product.scss */
 .s_product_img .carousel {
@@ -4832,7 +4832,7 @@ input:focus {
   margin-top: 15px;
 }
 
-/* End Single Product Area css
+/* End Single ProductConfig Area css
 ============================================================================================ */
 /* Cart Area css
 ============================================================================================ */
