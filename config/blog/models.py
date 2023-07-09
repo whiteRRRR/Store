@@ -13,6 +13,13 @@ class Blog(models.Model):
     category = models.OneToOneField('BlogCategory', on_delete=models.PROTECT, verbose_name='Категория')
     tag = models.ManyToManyField('BlogTags', verbose_name='Тэги')
 
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Блог'
+        verbose_name_plural = 'Блоги'
+
 
 class BlogCategory(models.Model):
     """
@@ -20,6 +27,13 @@ class BlogCategory(models.Model):
     """
     name = models.CharField(max_length=150, verbose_name='Название категорий блога')
     slug = models.SlugField(max_length=100, verbose_name='URL адрес категорий')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категорий'
 
 
 class BlogTags(models.Model):
@@ -31,6 +45,10 @@ class BlogTags(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Тэг'
+        verbose_name_plural = 'Тэги'
 
 
 
