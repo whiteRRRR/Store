@@ -38,10 +38,9 @@
                             <div class="select_option">
                                 <div class="select_option_list">Category <i class="right fas fa-caret-down"></i> </div>
                                 <div class="select_option_dropdown">
-                                    <p><a href="#">Category 1</a></p>
-                                    <p><a href="#">Category 2</a></p>
-                                    <p><a href="#">Category 3</a></p>
-                                    <p><a href="#">Category 4</a></p>
+                                    {% for category in categories %}
+                                        <p><a href="{% url 'by_category' category.slug %}">{{ category.name }}</a></p>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
@@ -65,7 +64,7 @@
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_item">
                                     <img src="{{ product.image.url  }}" alt="#" class="img-fluid">
-                                    <h3> <a href="single-product.html">{{ product.name }}</a> </h3>
+                                    <h3> <a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a> </h3>
                                     <p>{{ product.price }}$</p>
                                 </div>
                             </div>
