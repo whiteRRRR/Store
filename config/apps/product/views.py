@@ -49,6 +49,20 @@ class ProductDetailView(DetailView):
         return context
 
 
+class ProductSearchView(ListView):
+    template_name = 'product/product_list.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        return Products.objects.filter(name__icontains=self.request.GET.get("search"))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search'] = self.request.GET.get('search')
+        context['categories'] = ProductCategory.objects.all()
+        return context
+
+
 
 
 

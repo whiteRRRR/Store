@@ -49,7 +49,7 @@ class ProductImages(models.Model):
         filename = "%s.%s" % (instance.product.name, ext)
         return os.path.join('other_image', filename)
 
-    product = models.OneToOneField('Products', on_delete=models.CASCADE, default=None)
+    product = models.ForeignKey('Products', on_delete=models.CASCADE, default=None)
     image = models.ImageField(upload_to=content_file_name)
 
     def __str__(self):
