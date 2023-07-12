@@ -26,6 +26,7 @@
                 <div class="col-lg-8 mb-5 mb-lg-0">
                     <div class="blog_left_sidebar">
 
+                        {% if blogs %}
                         {% for blog in blogs %}
                         <article class="blog_item">
                             <div class="blog_item_img">
@@ -48,27 +49,32 @@
                             </div>
                         </article>
                         {% endfor %}
+                        {% else %}
+                            <p>В данный момент нет такого блога</p>
+                        {% endif %}
 
 
 
                         <nav class="blog-pagination justify-content-center d-flex">
                             <ul class="pagination">
+                                {% if page_obj.has_previous %}
+                                    <li class="page-item">
+                                        <a href="?page={{ page_obj.previous_page_number }}" class="page-link" aria-label="Previous">
+                                            <i class="ti-angle-left"></i>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                    <li class="page-item">
+                                        <a href="?page={{ page_obj.number }}" class="page-link">{{ page_obj.paginator.num_pages }}</a>
+                                    </li>
+
+                                {% if page_obj.has_next %}
                                 <li class="page-item">
-                                    <a href="#" class="page-link" aria-label="Previous">
-                                        <i class="ti-angle-left"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">1</a>
-                                </li>
-                                <li class="page-item active">
-                                    <a href="#" class="page-link">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link" aria-label="Next">
+                                    <a href="?page={{ page_obj.next_page_number}}" class="page-link" aria-label="Next">
                                         <i class="ti-angle-right"></i>
                                     </a>
                                 </li>
+                                {% endif %}
                             </ul>
                         </nav>
                     </div>
@@ -99,7 +105,7 @@
                             <ul class="list cat-list">
                                 {% for category in categories %}
                                 <li>
-                                    <a href="#" class="d-flex">
+                                    <a href="{% url 'by_category' category.slug %}" class="d-flex">
                                         <p>{{ category|capfirst }}</p>
                                     </a>
                                 </li>
@@ -127,7 +133,7 @@
                             <ul class="list">
                                 {% for tag in tags %}
                                     <li>
-                                        <a href="">{{ tag.name }}</a>
+                                        <a href="{% url 'by_tag' tag.slug %}">{{ tag.name }}</a>
                                     </li>
                                 {% endfor %}
                             </ul>
