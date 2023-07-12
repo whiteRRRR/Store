@@ -27,8 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Apps
-    'product.apps.ProductConfig',
-    'blog.apps.BlogConfig'
+    'apps.product.apps.ProductConfig',
+    'apps.blog.apps.BlogConfig',
+    'apps.user.apps.UserConfig'
 ]
 
 MIDDLEWARE = [
@@ -119,5 +120,8 @@ STATICFILES_DIRS = [
 # Asqar
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# Asqar
+AUTH_USER_MODEL = 'user.CustomUser'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
