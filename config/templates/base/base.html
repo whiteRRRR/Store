@@ -71,10 +71,8 @@
                                         pages
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="../../pillowmart/login.html">
-                                            login
-
-                                        </a>
+                                        <a class="dropdown-item" href="{% url 'login' %}">login</a>
+                                        <a class="dropdown-item" href="{% url 'register' %}">register</a>
                                         <a class="dropdown-item" href="../../pillowmart/checkout.html">product checkout</a>
                                         <a class="dropdown-item" href="../../pillowmart/cart.html">shopping cart</a>
                                         <a class="dropdown-item" href="../../pillowmart/confirmation.html">confirmation</a>
