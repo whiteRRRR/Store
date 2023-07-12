@@ -5,8 +5,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('product.urls')),
-    path('', include('blog.urls'))
+    path('', include('apps.product.urls')),
+    path('blog/', include('apps.blog.urls')),
+    path('register/', include('apps.user.urls'))
 ]
 
 if settings.DEBUG:
