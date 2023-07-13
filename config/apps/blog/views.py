@@ -90,23 +90,24 @@ class BlogDetailView(FormMixin, DetailView):
     slug_url_kwarg = 'slug'
     form_class = CommentForm
 
-    def post(self, request, slug):
+    def post(self, request, *args, **kwargs):
         form = self.get_form()
-        blog = Blog.objects.get(slug=slug)
+        blog = self.get_object()
         if form.is_valid():
-            form = form.save(commit=False)
-            form.blog_id = blog.id
-            form.author = request.user
-            form.save()
+            comment = form.save(commit=False)
+            comment.blog = blog
+            comment.author = request.user
+            comment.save()
             return redirect('blog_detail', slug=blog.slug)
         else:
             return self.form_invalid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        blog = self.get_object()
         context['tags'] = BlogTags.objects.all()
         context['blogs'] = Blog.objects.all()
-        context['comments'] = CommentBlog.objects.all()
+        context['comments'] = CommentBlog.objects.filter(blog=blog)
         context['categories'] = BlogCategory.objects.annotate(count=Count('blog')).order_by('-count')
         return context
 
