@@ -47,7 +47,7 @@
                                 <div class="select_option_list">Category <i class="right fas fa-caret-down"></i> </div>
                                 <div class="select_option_dropdown">
                                     {% for category in categories %}
-                                        <p><a href="{% url 'by_category' category.slug %}">{{ category.name }}</a></p>
+                                        <p><a href="{% url 'by_product_category' category.slug %}">{{ category.name }}</a></p>
                                     {% endfor %}
                                 </div>
                             </div>
