@@ -1,13 +1,15 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
+
 from .models import *
+from .utils import DataMixin
 
 
 def index(request):
     return render(request, 'base/index.html')
 
 
-class ProductListView(ListView):
+class ProductListView(DataMixin, ListView):
     model = Products
     template_name = 'product/product_list.html'
     context_object_name = 'products'
@@ -15,11 +17,11 @@ class ProductListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = ProductCategory.objects.all()
-        return context
+        c_def = self.get_user_context()
+        return dict(list(context.items()) + list(c_def.items()))
 
 
-class ByCategoryView(ListView):
+class ByCategoryView(DataMixin, ListView):
     model = Products
     template_name = 'product/product_list.html'
     context_object_name = 'products'
@@ -32,8 +34,8 @@ class ByCategoryView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = ProductCategory.objects.all()
-        return context
+        c_def = self.get_user_context()
+        return dict(list(context.items()) + list(c_def.items()))
 
 
 class ProductDetailView(DetailView):
@@ -51,7 +53,7 @@ class ProductDetailView(DetailView):
         return context
 
 
-class ProductSearchView(ListView):
+class ProductSearchView(DataMixin, ListView):
     template_name = 'product/product_list.html'
     context_object_name = 'products'
     paginate_by = 1
@@ -61,15 +63,5 @@ class ProductSearchView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['search'] = self.request.GET.get('search')
-        context['categories'] = ProductCategory.objects.all()
-        return context
-
-
-
-
-
-
-
-
-
+        c_def = self.get_user_context()
+        return dict(list(context.items()) + list(c_def.items()))
