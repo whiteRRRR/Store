@@ -67,9 +67,28 @@
                             </div>
                         </div>
                         {% endfor %}
-                        <div class="load_more_btn text-center">
-                            <a href="#" class="btn_3">Load More</a>
-                        </div>
+                        <nav class="product-pagination justify-content-center d-flex">
+                            <ul class="pagination">
+                                {% if page_obj.has_previous %}
+                                    <li class="page-item">
+                                        <a href="?page={{ page_obj.previous_page_number }}" class="page-link" aria-label="Previous">
+                                            <i class="ti-angle-left"></i>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                    <li class="page-item">
+                                        <a href="?page={{ page_obj.number }}" class="page-link">{{ page_obj.paginator.num_pages }}</a>
+                                    </li>
+
+                                {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a href="?page={{ page_obj.next_page_number}}" class="page-link" aria-label="Next">
+                                        <i class="ti-angle-right"></i>
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
                     </div>
                 </div>
 
