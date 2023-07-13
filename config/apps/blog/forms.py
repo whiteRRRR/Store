@@ -1,13 +1,16 @@
 from django.forms import ModelForm
 from .models import CommentBlog
+from django import forms
 
 
 class CommentForm(ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['name'].disabled = True
-        self.fields['email'].disabled = True
+    content = forms.CharField(widget=forms.Textarea(
+        attrs={'class': 'form-control w-100',
+               'rows': 9,
+               'placeholder': 'Write Comment'}))
 
     class Meta:
         model = CommentBlog
-        fields = ['name', 'email', 'body']
+        fields = ('content', )
+
+
