@@ -14,7 +14,7 @@ class Products(models.Model):
     status_of_product = models.CharField(blank=True, max_length=100, verbose_name='Статус товара')
     image = models.ImageField(upload_to="product_image/", verbose_name='Основное изображение товара')
     is_published = models.BooleanField(default=True, verbose_name='Опубликована')
-    category = models.OneToOneField('ProductCategory', on_delete=models.PROTECT, verbose_name='Категория')
+    category = models.ForeignKey('ProductCategory', on_delete=models.PROTECT, verbose_name='Категория')
 
     def __str__(self):
         return self.name
