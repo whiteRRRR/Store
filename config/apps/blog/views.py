@@ -1,7 +1,13 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views.generic import DetailView
+from django.views.generic.edit import FormMixin
 from django.views.generic.list import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
+
+from apps.blog.forms import CommentForm
 from apps.blog.models import *
 
 
@@ -58,7 +64,6 @@ class ByTagView(ListView):
         return context
 
 
-
 class BlogSearchView(ListView):
     paginate_by = 1
     model = Blog
@@ -78,18 +83,35 @@ class BlogSearchView(ListView):
         return context
 
 
-class BlogDetailView(DetailView):
+class BlogDetailView(FormMixin, DetailView):
     model = Blog
     template_name = 'blog/single-blog.html'
     context_object_name = 'blog'
     slug_url_kwarg = 'slug'
+    form_class = CommentForm
+
+    def post(self, request, slug):
+        form = self.get_form()
+        blog = Blog.objects.get(slug=slug)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.blog_id = blog.id
+            form.author = request.user
+            form.save()
+            return redirect('blog_detail', slug=blog.slug)
+        else:
+            return self.form_invalid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['tags'] = BlogTags.objects.all()
         context['blogs'] = Blog.objects.all()
+        context['comments'] = CommentBlog.objects.all()
         context['categories'] = BlogCategory.objects.annotate(count=Count('blog')).order_by('-count')
         return context
+
+
+
 
 
 
