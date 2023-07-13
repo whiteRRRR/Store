@@ -59,7 +59,7 @@
                                         product
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href={% url 'product_list' %}> product list</a>
+                                        <a class="dropdown-item" href="{% url 'product_list' %}"> product list</a>
                                         <a class="dropdown-item" href="../../pillowmart/single-product.html">product details</a>
 
                                     </div>
@@ -71,8 +71,6 @@
                                         pages
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="{% url 'login' %}">login</a>
-                                        <a class="dropdown-item" href="{% url 'register' %}">register</a>
                                         <a class="dropdown-item" href="../../pillowmart/checkout.html">product checkout</a>
                                         <a class="dropdown-item" href="../../pillowmart/cart.html">shopping cart</a>
                                         <a class="dropdown-item" href="../../pillowmart/confirmation.html">confirmation</a>
@@ -94,6 +92,18 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="../../pillowmart/contact.html">Contact</a>
                                 </li>
+                                {% if request.user.is_authenticated %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                                </li>
+                                {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                                </li>
+                                {% endif %}
                             </ul>
                         </div>
                         <div class="hearer_icon d-flex align-items-center">
