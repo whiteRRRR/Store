@@ -28,11 +28,11 @@
                   <div class="blog_details">
                      <h2>{{ blog.title }}</h2>
                      <ul class="blog-info-link mt-3 mb-4">
-                        <li><a href="#"><i class="far fa-user"></i>{{ blog.tag }}</a></li>
-                        <li><a href="#"><i class="far fa-comments"></i> 03 Comments</a></li>
+                        <li><i class="far fa-user"></i>admin</li>
+                        <li><a href="#"><i class="far fa-comments"></i> {{ comments.count|stringformat:"02d" }} Comments</a></li>
                      </ul>
                      <p class="text-widths">
-                        {{ blog.description }}
+                        {{ blog.description|safe }} {# safe для отображение текста в формате html #}
                      </p>
                   </div>
                </div>
@@ -52,7 +52,7 @@
                   </div>
                </div>
                <div class="comments-area">
-                  <h4>{{ comments.count }} Comments</h4>
+                  <h4>{{ comments.count|stringformat:"02d"}} Comments</h4>
                    {% if comments %}
                        {% for comment in comments %}
                           <div class="comment-list">
@@ -137,7 +137,7 @@
                         <li>
                            <a href="{% url 'by_category' category.slug %}" class="d-flex">
                               <p>{{ category.name }}</p>
-                              <p>({{ category.count }})</p>
+                              <p>({{ category.count|stringformat:"02d" }})</p>
                            </a>
                         </li>
                          {% endfor %}

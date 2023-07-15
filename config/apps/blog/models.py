@@ -1,12 +1,14 @@
 from django.db import models
 from apps.user.models import CustomUser
+from tinymce.models import HTMLField
+
 
 class Blog(models.Model):
     """
     Создает класс для блога
     """
     title = models.CharField(max_length=150, verbose_name='Название блога')
-    description = models.TextField(verbose_name='Информация о блоге')
+    description = HTMLField(verbose_name='Информация о блоге')
     image = models.ImageField(upload_to='blog_image/', verbose_name='Картинка для блога')
     date = models.DateField(auto_now=True, verbose_name='Дата создание')
     slug = models.SlugField(max_length=100, verbose_name='URL адрес блога')
