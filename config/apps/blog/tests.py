@@ -61,6 +61,17 @@ class CommentModelTest(BaseTestCase):
 class BlogViewTest(BaseTestCase):
     def setUp(self):
         self.create_test_data()
+        self.user = CustomUser.objects.create(
+            username='User',
+            first_name='user_first_name',
+            last_name='user_last_name',
+            email='user@gmail.com'
+        )
+        self.comment = CommentBlog.objects.create(
+            blog=self.blog,
+            content='test_comment',
+            author=self.user
+        )
 
     def test_blog_list_view(self):
         response = self.client.get(reverse('blog_list'))
@@ -75,5 +86,31 @@ class BlogViewTest(BaseTestCase):
         self.assertTemplateUsed(response, 'blog/blog.html')
         self.assertContains(response, 'TestBlog')
         self.assertEqual(len(response.context['blogs']), 1)
+
+    def test_by_tag_view(self):
+        response = self.client.get(reverse('by_tag', args=[self.tags.slug]))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'blog/blog.html')
+        self.assertContains(response, 'TestBlog')
+        self.assertEqual(len(response.context['blogs']), 1)
+
+    def test_blog_search_view(self):
+        response = self.client.get(reverse('blog_search'), {'search': 'Test'})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'blog/blog.html')
+        self.assertContains(response, 'TestBlog')
+        self.assertEqual(len(response.context['blogs']), 1)
+
+    def test_blog_detail_view(self):
+        response = self.client.get(reverse('blog_detail', args=[self.blog.slug]))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'blog/single-blog.html')
+        self.assertContains(response, 'TestBlog')
+        self.assertContains(response, 'test_comment')
+
+
+
+
+
 
 
