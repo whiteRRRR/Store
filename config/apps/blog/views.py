@@ -84,14 +84,9 @@ class BlogDetailView(CommonContextMixin, FormMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         blog = self.get_object()
-        common_context = self.get_common_context_data()
-        context.update(common_context)
         context['blogs'] = Blog.objects.all()
         context['comments'] = CommentBlog.objects.filter(blog=blog).annotate(count=Count('blog')).order_by('-count')
+        context.update(self.get_common_context_data())
         return context
 
-    def get_common_context_data(self):
-        common_context = {}
-        common_context['categories'] = BlogCategory.objects.annotate(count=Count('blog')).order_by('-count')
-        common_context['tags'] = BlogTags.objects.all()
-        return common_context
+
