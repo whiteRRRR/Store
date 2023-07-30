@@ -1,6 +1,7 @@
 import os
 
 from django.db import models
+from tinymce.models import HTMLField
 
 
 class Products(models.Model):
@@ -9,7 +10,7 @@ class Products(models.Model):
     """
     name = models.CharField(max_length=150, verbose_name='Названия товара')
     slug = models.SlugField(max_length=100, verbose_name='URL адрес товара')
-    description = models.TextField(blank=True, verbose_name='О товаре')
+    description = HTMLField(blank=True, verbose_name='О товаре')
     price = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Цена товара')
     status_of_product = models.CharField(blank=True, max_length=100, verbose_name='Статус товара')
     image = models.ImageField(upload_to="product_image/", verbose_name='Основное изображение товара')
