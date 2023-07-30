@@ -1,35 +1,39 @@
-from django.shortcuts import render
+from django.http import JsonResponse
+from django.shortcuts import redirect, render, get_object_or_404
+from django.views import View
 
-from .models import Order
-
-
-def cart(request):
-
-    name = 'Корзина'
-
-    if request.user.is_authenticated:
-        user = request.user
-        order, created = Order.objects.get_or_create(user=user.id, complete=False)
-        items = order.orderitem_set.all()
-    else:
-        items = []
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
-
-    context = {'items': items, 'order': order, 'name': name}
-    return render(request, 'cart/cart.html', context=context)
+from .models import CartItem, Products
 
 
-def checkout(request):
+class AddToCartView(View):
 
-    name = 'Заказ'
+    def post(self, request, product_slug):
+        product = get_object_or_404(Products, slug=product_slug)
+        cart_item, created = CartItem.objects.get_or_create(product=product, user=request.user)
+        if not created:
+            cart_item.quantity += 1
+            cart_item.save()
 
-    if request.user.is_authenticated:
-        user = request.user.user_id
-        order, created = Order.objects.get_or_create(user=user, complete=False)
-        items = order.orderitem_set.all()
-    else:
-        items = []
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
+        return redirect('cart')
 
-    context = {'items': items, 'order': order, 'name': name}
-    return render(request, 'cart/checkout.html', context=context)
+
+class RemoveFromCartView(View):
+
+    def post(self, request, product_slug):
+        product = get_object_or_404(Products, slug=product_slug)
+        cart_item = get_object_or_404(CartItem, product=product, user=request.user)
+        if cart_item.quantity > 1:
+            cart_item.quantity -= 1
+            cart_item.save()
+        else:
+            cart_item.delete()
+
+        redirect('cart')
+
+
+class CartView(View):
+    def get(self, request):
+        cart_items = CartItem.objects.filter(user=request.user)
+        total = sum(item.total_price() for item in cart_items)
+        return render(request, 'cart/cart.html', {'cart_items': cart_items, 'total': total})
+
