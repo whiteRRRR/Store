@@ -29,7 +29,14 @@ INSTALLED_APPS = [
     # Apps
     'apps.product.apps.ProductConfig',
     'apps.blog.apps.BlogConfig',
-    'apps.user.apps.UserConfig'
+    'apps.user.apps.UserConfig',
+    'apps.cart.apps.CartConfig',
+
+    # Library
+    'tinymce'
+
+
+
 ]
 
 MIDDLEWARE = [
