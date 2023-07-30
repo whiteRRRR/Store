@@ -8,13 +8,15 @@ from .models import CartItem, Products
 class AddToCartView(View):
 
     def post(self, request, product_slug):
-        product = get_object_or_404(Products, slug=product_slug)
-        cart_item, created = CartItem.objects.get_or_create(product=product, user=request.user)
-        if not created:
-            cart_item.quantity += 1
-            cart_item.save()
-
-        return redirect('cart')
+        if request.user.is_authenticated:
+            product = get_object_or_404(Products, slug=product_slug)
+            cart_item, created = CartItem.objects.get_or_create(product=product, user=request.user)
+            if not created:
+                cart_item.quantity += 1
+                cart_item.save()
+            return redirect('cart')
+        else:
+            return redirect('login')
 
 
 class RemoveFromCartView(View):
