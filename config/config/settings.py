@@ -118,17 +118,17 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Asqar
+# STATIC FILES
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
 
-# Asqar
+# MEDIA
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-# Asqar
+# AUTH USER
 AUTH_USER_MODEL = 'user.CustomUser'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
