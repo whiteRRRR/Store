@@ -34,3 +34,13 @@ class CartView(View):
         total = sum(item.total_price() for item in cart_items)
         return render(request, 'cart/cart.html', {'cart_items': cart_items, 'total': total})
 
+
+class CheckoutView(View):
+    def get(self, request):
+        cart_items = CartItem.objects.filter(user=request.user)
+        total = sum(item.total_price() for item in cart_items)
+        return render(request, 'cart/checkout.html', {'cart_items': cart_items, 'total': total})
+
+
+
+
