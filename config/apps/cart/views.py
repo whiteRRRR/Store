@@ -24,12 +24,7 @@ class RemoveFromCartView(View):
     def post(self, request, product_slug):
         product = get_object_or_404(Products, slug=product_slug)
         cart_item = get_object_or_404(CartItem, product=product, user=request.user)
-        if cart_item.quantity > 1:
-            cart_item.quantity -= 1
-            cart_item.save()
-        else:
-            cart_item.delete()
-
+        cart_item.delete()
         redirect('cart')
 
 
