@@ -15,7 +15,7 @@ def index(request):
 
 class BlogListView(CommonContextMixin, ListView):
     model = Blog
-    paginate_by = 1
+    paginate_by = 3
     template_name = 'blog/blog.html'
     context_object_name = 'blogs'
 
@@ -28,7 +28,7 @@ class BlogListView(CommonContextMixin, ListView):
 
 class ByCategoryView(CommonContextMixin, ListView):
     model = Blog
-    paginate_by = 1
+    paginate_by = 3
     template_name = 'blog/blog.html'
     context_object_name = 'blogs'
 
@@ -39,7 +39,7 @@ class ByCategoryView(CommonContextMixin, ListView):
 
 
 class ByTagView(CommonContextMixin, ListView):
-    paginate_by = 1
+    paginate_by = 3
     model = Blog
     template_name = 'blog/blog.html'
     context_object_name = 'blogs'
@@ -51,7 +51,7 @@ class ByTagView(CommonContextMixin, ListView):
 
 
 class BlogSearchView(CommonContextMixin, ListView):
-    paginate_by = 1
+    paginate_by = 3
     model = Blog
     template_name = 'blog/blog.html'
     context_object_name = 'blogs'
