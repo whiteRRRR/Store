@@ -25,7 +25,7 @@ class RemoveFromCartView(View):
         product = get_object_or_404(Products, slug=product_slug)
         cart_item = get_object_or_404(CartItem, product=product, user=request.user)
         cart_item.delete()
-        redirect('cart')
+        return redirect('cart')
 
 
 class CartView(View):
