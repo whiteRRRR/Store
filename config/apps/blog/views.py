@@ -18,6 +18,7 @@ class BlogListView(CommonContextMixin, ListView):
     paginate_by = 3
     template_name = 'blog/blog.html'
     context_object_name = 'blogs'
+    ordering = '-date'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -37,6 +38,12 @@ class ByCategoryView(CommonContextMixin, ListView):
         category = BlogCategory.objects.get(slug=category_slug)
         return Blog.objects.filter(category=category)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        common_context = self.get_common_context_data()
+        context.update(common_context)
+        return context
+
 
 class ByTagView(CommonContextMixin, ListView):
     paginate_by = 3
@@ -48,6 +55,12 @@ class ByTagView(CommonContextMixin, ListView):
         tag_slug = self.kwargs['tag_slug']
         tag = BlogTags.objects.get(slug=tag_slug)
         return Blog.objects.filter(tags=tag)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        common_context = self.get_common_context_data()
+        context.update(common_context)
+        return context
 
 
 class BlogSearchView(CommonContextMixin, ListView):
