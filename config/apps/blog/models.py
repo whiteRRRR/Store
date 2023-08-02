@@ -5,7 +5,7 @@ from tinymce.models import HTMLField
 
 class Blog(models.Model):
     """
-    Создает класс для блога
+    Создает модель для блога
     """
     title = models.CharField(max_length=150, verbose_name='Название блога')
     description = HTMLField(verbose_name='Информация о блоге')
@@ -25,7 +25,7 @@ class Blog(models.Model):
 
 class BlogCategory(models.Model):
     """
-    Создает категорий для блога
+    Создает модель категорий для блога
     """
     name = models.CharField(max_length=150, verbose_name='Название категорий блога')
     slug = models.SlugField(max_length=100, verbose_name='URL адрес категорий')
@@ -40,7 +40,7 @@ class BlogCategory(models.Model):
 
 class BlogTags(models.Model):
     """
-        Создает тэг для блога
+        Создает модель тэг для блога
     """
     name = models.CharField(max_length=150, verbose_name='Название тэг для блога')
     slug = models.SlugField(max_length=100, verbose_name='URL адрес категорий')

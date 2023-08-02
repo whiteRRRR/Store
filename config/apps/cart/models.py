@@ -19,6 +19,3 @@ class OrderItem(models.Model):
     country = models.CharField(max_length=100, null=True)
     city = models.CharField(max_length=100, null=True)
     zipcode = models.CharField(max_length=100, null=True)
-
-
-    
