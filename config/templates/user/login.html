@@ -26,13 +26,28 @@
                                 Please Sign in now</h3>
                             <form class="row contact_form" action="#" method="post" novalidate="novalidate">
                                 {% csrf_token %}
-                                <div class="form-error">{{ form.non_field_errors }}</div>
+                                <div class="col-md-12 form-group p_star">
+                                    {{ form.username.label_tag }}
+                                     <label style="color: red;">{{ form.username.errors }}</label>
+                                    {{ form.username }}
+                                    {{ form.password.label_tag }}
+                                    <label style="color: red;">{{ form.password.errors }}</label>
+                                    {{ form.password }}
+                                </div>
 
-                                {% for f in form %}
-                                    <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
-                                    <div class="form-error">{{ f.errors }}</div>
-                                {% endfor %}
-                                <button class="btn_3" type="submit">Войти</button>
+
+                                <div class="col-md-12 form-group">
+                                    <div class="creat_account d-flex align-items-center">
+                                        {{ form.remember_me }}
+                                        <label for="{{ form.remember_me.id_for_label }}">Remember me</label>
+                                    </div>
+                                    <button type="submit" value="submit" class="btn_3">
+                                        Войти
+                                    </button>
+                                    <a class="lost_pass" href="#">forget password?</a>
+                                </div>
+
+
                             </form>
                         </div>
                     </div>
