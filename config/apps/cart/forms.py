@@ -39,6 +39,12 @@ class OrderForm(forms.ModelForm):
                'name': "city"
 
                }))
+
+    country = forms.CharField(label='Страна:', widget=forms.TextInput(
+        attrs={'class': "form-control",
+               'id': "country",
+               'name': "country"
+               }))
     zipcode = forms.CharField(label='Зип:', widget=forms.TextInput(
         attrs={'class': "form-control",
                'id': "zip",
