@@ -11,47 +11,41 @@
               <div class="col-lg-8">
                 <h3>Платежные реквизиты</h3>
                 <form class="row contact_form" action="#" method="post" novalidate="novalidate">
-                  {% csrf_token %}
-                  <div class="col-md-6 form-group p_star">
-                    {{form.first_name}}
-                    <span class="placeholder" data-placeholder="Имя"></span>
-                  </div>
-                  <div class="col-md-6 form-group p_star">
-                    <input type="text" class="form-control" id="last" name="name" />
-                    <span class="placeholder" data-placeholder="Фамилия"></span>
-                  </div>
-                  <div class="col-md-6 form-group p_star">
-                    <input type="text" class="form-control" id="number" name="number" />
-                    <span class="placeholder" data-placeholder="Номер телефона"></span>
-                  </div>
-                  <div class="col-md-6 form-group p_star">
-                    <input type="text" class="form-control" id="email" name="compemailany" />
-                    <span class="placeholder" data-placeholder="Емайл адресс"></span>
-                  </div>
-                  <div class="col-md-12 form-group p_star">
-                    <select class="country_select">
-                      <option value="1">Страна</option>
-                    </select>
-                  </div>
-                  <div class="col-md-12 form-group p_star">
-                    <input type="text" class="form-control" id="add1" name="add1" />
-                    <span class="placeholder" data-placeholder="Адрес"></span>
-                  </div>
-                  <div class="col-md-12 form-group p_star">
-                    <input type="text" class="form-control" id="city" name="city" />
-                    <span class="placeholder" data-placeholder="Город"></span>
-                  </div>
-                  <div class="col-md-12 form-group p_star">
-                    <select class="country_select">
-                      <option value="1">Район</option>
-                    </select>
-                  </div>
-                  <div class="col-md-12 form-group">
-                    <input type="text" class="form-control" id="zip" name="zip" placeholder="ЗИП" />
-                  </div>
-
+                {% csrf_token %}
+                    <div class="col-md-6 form-group p_star">
+                        {{form.first_name}}
+                        <span class="placeholder" data-placeholder="Имя"></span>
+                    </div>
+                    <div class="col-md-6 form-group p_star">
+                        {{form.last_name}}
+                        <span class="placeholder" data-placeholder="Фамилия"></span>
+                    </div>
+                    <div class="col-md-6 form-group p_star">
+                        {{form.phone_number}}
+                        <span class="placeholder" data-placeholder="Номер телефона"></span>
+                    </div>
+                    <div class="col-md-6 form-group p_star">
+                        {{form.email}}
+                        <span class="placeholder" data-placeholder="Емайл адресс"></span>
+                    </div>
+                    <div class="col-md-6 form-group p_star">
+                        {{form.address}}
+                        <span class="placeholder" data-placeholder="Адрес"></span>
+                    </div>
+                    <div class="col-md-6 form-group p_star">
+                        {{form.city}}
+                        <span class="placeholder" data-placeholder="Город"></span>
+                    </div>
+                    <div class="col-md-6 form-group p_star">
+                        {{form.zipcode}}
+                        <span class="placeholder" data-placeholder="ZipCode"></span>
+                    </div>
+                        <p><button type="submit" class="btn_3">Оплатить</button></p>
                 </form>
               </div>
+
+
+
               <div class="col-lg-4">
                 <div class="order_box">
                   <h2>Ваш заказ</h2>
@@ -68,8 +62,6 @@
                             <td>{{ cart_item.total_price}}</td>
                     </tr>
                     {% endfor %}
-
-
                   </table>
 
 
@@ -81,7 +73,6 @@
                     </li>
                   </ul>
 
-                  <a class="btn_3" href="#">Перейдите на Paypal</a>
                 </div>
               </div>
             </div>
