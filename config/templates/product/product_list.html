@@ -38,17 +38,18 @@
                 </div>
                 <div class="col-md-8">
                     <div class="product_list">
-                        {% for product in products %}
                         <div class="row">
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="single_product_item">
-                                    <img src="{{ product.image.url  }}" alt="#" class="img-fluid">
-                                    <h3> <a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a> </h3>
-                                    <p>{{ product.price }}$</p>
+                            {% for product in products %}
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="single_product_item">
+                                        <img src="{{ product.image.url  }}" alt="#" class="img-fluid">
+                                        <h3> <a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a> </h3>
+                                        <p>{{ product.price }}$</p>
+                                    </div>
                                 </div>
-                            </div>
+                            {% endfor %}
+
                         </div>
-                        {% endfor %}
                         <nav class="product-pagination justify-content-center d-flex">
                             <ul class="pagination">
                                 {% if page_obj.has_previous %}
