@@ -59,7 +59,7 @@ class OrderView(FormView):
         email = form.cleaned_data['email']
         address = form.cleaned_data['address']
         city = form.cleaned_data['city']
-        zipcode = form.cleaned_data['zip_code']
+        zipcode = form.cleaned_data['zipcode']
         order = OrderItem.objects.create(
             user=self.request.user,
             first_name=first_name,
