@@ -14,9 +14,10 @@ class CartItem(models.Model):
 
 
 class OrderItem(models.Model):
-    cart_item = models.ForeignKey('CartItem', on_delete=models.CASCADE)
+    user = models.ForeignKey('user.CustomUser', on_delete=models.PROTECT)
     first_name = models.CharField(max_length=100, null=True)
     last_name = models.CharField(max_length=100, null=True)
+    email = models.EmailField(null=True)
     phone_number = models.CharField(max_length=100, null=True)
     address = models.CharField(max_length=100, null=True)
     country = models.CharField(max_length=100, null=True)
