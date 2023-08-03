@@ -6,27 +6,27 @@ User = get_user_model()
 
 
 class RegisterUserForm(UserCreationForm):
-    username = forms.CharField(label='Логин', widget=forms.TextInput(
+    username = forms.CharField(label='Логин:', widget=forms.TextInput(
         attrs={'class': "form-control"
 
                }))
-    first_name = forms.CharField(label='Имя', widget=forms.TextInput(
+    first_name = forms.CharField(label='Имя:', widget=forms.TextInput(
         attrs={'class': "form-control"
 
                }))
-    last_name = forms.CharField(label='Фамилия', widget=forms.TextInput(
+    last_name = forms.CharField(label='Фамилия:', widget=forms.TextInput(
         attrs={'class': "form-control"
 
                }))
-    email = forms.EmailField(label='Email', widget=forms.EmailInput(
+    email = forms.EmailField(label='Email:', widget=forms.EmailInput(
         attrs={'class': "form-control"
 
                }))
-    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(
+    password1 = forms.CharField(label='Пароль:', widget=forms.PasswordInput(
         attrs={'class': "form-control"
 
                }))
-    password2 = forms.CharField(label='Повтор пароля', widget=forms.PasswordInput(
+    password2 = forms.CharField(label='Повтор пароля:', widget=forms.PasswordInput(
         attrs={'class': "form-control"
 
                }))
