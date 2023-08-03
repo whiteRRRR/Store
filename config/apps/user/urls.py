@@ -4,7 +4,6 @@ from apps.product.views import index
 from .views import *
 
 urlpatterns = [
-    path('', index, name='homepage'),
     path('register/', RegisterUser.as_view(), name='register'),
     path('login/', LoginUser.as_view(), name='login'),
     path('logout/', logout_user, name='logout'),
