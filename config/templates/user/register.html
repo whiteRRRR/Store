@@ -13,7 +13,7 @@
                 <div class="register_part_text">
                     <h2>Welcome to our Shop!</h2>
                     <p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-                    <a href="{% url 'login' %}" class="btn_3">Sign In</a>
+                    <a href="{% url 'login' %}" class="btn_3">Войти</a>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -21,32 +21,39 @@
                     <h3>Create an Account</h3>
                     <form class="row contact_form" action="#" method="post" novalidate="novalidate">
                         {% csrf_token %}
-                        {% for f in form %}
-                        <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
-                        <div class="form-error">{{ f.errors }}</div>
-                        {% endfor %}
-                        <label>
-                             <input type="checkbox" name="">
-                            Я соглашаюсь на все условия
-                        </label>
-                        <button type="submit">Регистрация</button>
-{#                        <div class="col-md-12 form-group p_star">#}
-{#                            <input type="text" class="form-control" id="name" name="name" value=""#}
-{#                                placeholder="Username">#}
-{#                        </div>#}
-{#                        <div class="col-md-12 form-group p_star">#}
-{#                            <input type="password" class="form-control" id="password1" name="password1" value=""#}
-{#                                placeholder="Password">#}
-{#                        </div>#}
-{#                        <div class="col-md-12 form-group p_star">#}
-{#                            <input type="password" class="form-control" id="password2" name="password2" value=""#}
-{#                                placeholder="Confirm Password">#}
-{#                        </div>#}
-{#                        <div class="col-md-12 form-group">#}
-{#                            <button type="submit" value="submit" class="btn_3">#}
-{#                                Register#}
-{#                            </button>#}
-{#                        </div>#}
+                        <div class="col-md-12 form-group p_star">
+                            {{ form.username.label }}
+                            <label style="color: red">{{ form.username.errors }}</label>
+                            {{ form.username }}
+
+                            {{ form.first_name.label }}
+                            <label style="color: red">{{ form.first_name.errors }}</label>
+                            {{ form.first_name }}
+
+                            {{ form.last_name.label }}
+                            <label style="color: red">{{ form.last_name.errors }}</label>
+                            {{ form.last_name }}
+
+                            {{ form.email.label }}
+                            <label style="color: red">{{ form.email.errors }}</label>
+                            {{ form.email }}
+
+                            {{ form.password1.label }}
+                            <label style="color: red">{{ form.password1.errors }}</label>
+                            {{ form.password1 }}
+
+                            {{ form.password2.label }}
+                            <label style="color: red">{{ form.password2.errors }}</label>
+                            {{ form.password2 }}
+
+
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <button type="submit" value="submit" class="btn_3">
+                                Зарегистрироваться
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>

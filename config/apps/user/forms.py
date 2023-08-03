@@ -6,12 +6,30 @@ User = get_user_model()
 
 
 class RegisterUserForm(UserCreationForm):
-    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
-    first_name = forms.CharField(label='Имя', widget=forms.TextInput(attrs={'class': 'form-input'}))
-    last_name = forms.CharField(label='Фамилия', widget=forms.TextInput(attrs={'class': 'form-input'}))
-    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-input'}))
-    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
-    password2 = forms.CharField(label='Повтор пароля', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+    username = forms.CharField(label='Логин:', widget=forms.TextInput(
+        attrs={'class': "form-control"
+
+               }))
+    first_name = forms.CharField(label='Имя:', widget=forms.TextInput(
+        attrs={'class': "form-control"
+
+               }))
+    last_name = forms.CharField(label='Фамилия:', widget=forms.TextInput(
+        attrs={'class': "form-control"
+
+               }))
+    email = forms.EmailField(label='Email:', widget=forms.EmailInput(
+        attrs={'class': "form-control"
+
+               }))
+    password1 = forms.CharField(label='Пароль:', widget=forms.PasswordInput(
+        attrs={'class': "form-control"
+
+               }))
+    password2 = forms.CharField(label='Повтор пароля:', widget=forms.PasswordInput(
+        attrs={'class': "form-control"
+
+               }))
 
     class Meta:
         model = User
@@ -19,5 +37,23 @@ class RegisterUserForm(UserCreationForm):
 
 
 class LoginUserForm(AuthenticationForm):
-    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
-    password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+    username = forms.CharField(label='Логин', widget=forms.TextInput(
+        attrs={'class': "form-control",
+               'placeholder': "Login",
+               'id': "name",
+               'name': "name",
+               'value': ""
+               }))
+
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput(
+        attrs={'class': "form-control",
+               'placeholder': "Password",
+               'id': "password",
+               'name': "password",
+               'value': ""
+               }))
+
+    remember_me = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={
+        'id': "f-option",
+        'name': "selector"
+    }))
