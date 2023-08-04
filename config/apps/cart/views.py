@@ -5,12 +5,11 @@ from django.views import View
 from django.views.generic import FormView
 
 from .models import CartItem, OrderItem
-from .forms import OrderForm
+from .forms import OrderForm, UpdateCartItemForm
 from ..product.models import Products
 
 
 class AddToCartView(View):
-
     def post(self, request, product_slug):
         if request.user.is_authenticated:
             product = get_object_or_404(Products, slug=product_slug)
@@ -37,6 +36,17 @@ class CartView(View):
         cart_items = CartItem.objects.filter(user=request.user)
         total = sum(item.total_price() for item in cart_items)
         return render(request, 'cart/cart.html', {'cart_items': cart_items, 'total': total})
+
+
+class UpdateCartItemsView(View):
+    def post(self, request):
+        for key, quantity in request.POST.items():
+            if key.startswith('quantity_'):
+                cart_item_id = key.split('_')[1]
+                cart_item = get_object_or_404(CartItem, id=cart_item_id, user=self.request.user)
+                cart_item.quantity = int(quantity)
+                cart_item.save()
+        return redirect('cart')
 
 
 class OrderView(FormView):

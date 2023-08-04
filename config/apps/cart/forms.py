@@ -1,7 +1,17 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from .models import OrderItem, CartItem
 
-from .models import OrderItem
+
+class UpdateCartItemForm(forms.ModelForm):
+    quantity = forms.IntegerField(widget=forms.TextInput(
+        attrs={
+            'class': "form-control"
+        }))
+
+    class Meta:
+        model = CartItem
+        fields = ['quantity']
 
 
 class OrderForm(forms.ModelForm):
