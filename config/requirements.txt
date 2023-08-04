@@ -1,6 +1,7 @@
 asgiref==3.7.2
 coverage==7.2.7
 Django==4.2.3
+django-debug-toolbar==4.1.0
 django-tinymce==3.6.1
 flake8==6.0.0
 mccabe==0.7.0
