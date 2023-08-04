@@ -11,7 +11,7 @@ class Blog(models.Model):
     description = HTMLField(verbose_name='Информация о блоге')
     image = models.ImageField(upload_to='blog_image/', verbose_name='Картинка для блога')
     date = models.DateField(auto_now=True, verbose_name='Дата создание')
-    slug = models.SlugField(max_length=100, verbose_name='URL адрес блога')
+    slug = models.SlugField(max_length=100, unique=True, verbose_name='URL адрес блога')
     category = models.ForeignKey('BlogCategory', on_delete=models.PROTECT, verbose_name='Категория')
     tags = models.ManyToManyField('BlogTags', verbose_name='Тэги')
 
