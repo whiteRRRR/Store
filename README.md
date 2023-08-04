@@ -44,9 +44,15 @@ env\Scripts\activate
 pip install -r requirements.txt
 ```
 
+### 4. Соберите и запустите контейнеры Docker. 
+
+```
+docker-compose up --build
+```
+
 ## Настройка
 
-### 4. Примените миграции:
+### 5. Примените миграции:
 
 ```
 python manage.py makekigrations
@@ -55,7 +61,7 @@ python manage.py makekigrations
 python manage.py migrate
 ```
 
-### 5. Создайте суперпользователя для доступа к панели администратора:
+### 6. Создайте суперпользователя для доступа к панели администратора:
 
 ```
 python manage.py createsuperuser
@@ -63,7 +69,7 @@ python manage.py createsuperuser
 
 ## Запуск приложения
 
-### 6. Запустите сервер разработки:
+### 7. Запустите сервер разработки:
 
 ```
 python manage.py runserver
