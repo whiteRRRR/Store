@@ -9,6 +9,10 @@ def index(request):
     return render(request, 'base/index.html')
 
 
+def get_about_page(reqest):
+    return render(reqest, 'base/about.html')
+
+
 class TrendProductListView(ListView):
     model = Products
     template_name = 'base/index.html'

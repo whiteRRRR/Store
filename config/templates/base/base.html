@@ -51,7 +51,7 @@
                                     <a class="nav-link" href="{% url 'homepage' %}">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../../pillowmart/about.html">about</a>
+                                    <a class="nav-link" href="{% url 'about' %}">about</a>
                                 </li>
                                 <li class="nav-item">
                                 <a class="nav-link" href="{% url 'product_list' %}">Product</a>
@@ -62,7 +62,7 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../../pillowmart/contact.html">Contact</a>
+                                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                                 </li>
                                 {% if request.user.is_authenticated %}
                                     <li class="nav-item">
@@ -143,11 +143,11 @@
                             </div>
                             <div class="footer_menu_item">
                                 <a href="{% url 'homepage' %}">Home</a>
-                                <a href="../../pillowmart/about.html">About</a>
+                                <a href="about.html">About</a>
                                 <a href="{% url 'product_list' %}">Products</a>
                                 <a href="#">Pages</a>
                                 <a href="{% url 'blog_list' %}">Blog</a>
-                                <a href="../../pillowmart/contact.html">Contact</a>
+                                <a href="contact.html">Contact</a>
                             </div>
                         </div>
                     </div>
