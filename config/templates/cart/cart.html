@@ -18,65 +18,67 @@
     <div class="container">
       <div class="cart_inner">
         <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Продукт</th>
-                <th scope="col">Цена</th>
-                <th scope="col">Количество</th>
-                <th scope="col">Сумма</th>
-              </tr>
-            </thead>
-            <tbody>
-            {% for cart in cart_items%}
-              <tr>
-                <td>
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="{{cart.product.image.url}}" alt="" />
-                    </div>
-                    <div class="media-body">
-                      <p>{{ cart.product.name }}</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <h5>{{ cart.product.price }}</h5>
-                </td>
-                <td>
-                  <h5>{{ cart.quantity }}</h5>
-                </td>
-                <td>
-                  <h5>{{ cart.total_price }}</h5>
-                </td>
-                <td>
-                    <form method="post" action="{% url 'remove_from_cart' cart.product.slug %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn-closes">&#215</button>
-                    </form>
-                </td>
-              </tr>
-            {% endfor %}
-              <tr class="bottom_button">
-                <td>
-                  <a class="btn_1" href="{% url 'cart' %}">Update Cart</a>
-                </td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td>
-                  <h5>Общая сумма</h5>
-                </td>
-                <td>
-                  <h5>${{ total }}</h5>
-                </td>
-              </tr>
+            <form method="post" action="{% url 'update_cart_items' %}">
+            {% csrf_token %}
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Продукт</th>
+                    <th scope="col">Цена</th>
+                    <th scope="col">Количество</th>
+                    <th scope="col">Сумма</th>
+                    <th scope="col">Удалить</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for cart in cart_items %}
+                  <tr>
+                    <td>
+                      <div class="media">
+                        <div class="d-flex">
+                          <img src="{{cart.product.image.url}}" alt="" />
+                        </div>
+                        <div class="media-body">
+                          <p>{{ cart.product.name }}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <h5>{{ cart.product.price }}</h5>
+                    </td>
+                    <td>
+                      <input type="number" name="quantity_{{ cart.id }}" value="{{ cart.quantity }}">
+                    </td>
+                    <td>
+                      <h5>{{ cart.total_price }}</h5>
+                    </td>
+                    <td>
+                        <form method="post" action="{% url 'remove_from_cart' cart.product.slug %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-closes">&#215</button>
+                        </form>
+                    </td>
+                  </tr>
+                {% endfor %}
+                  <tr class="bottom_button">
+                    <td>
+                      <input type="submit" class="btn_1" value="Обновить количество">
+                    </td>
+                      <td></td>
+                      <td></td>
+                    <td>
+                      <h5>Общая сумма</h5>
+                    </td>
+                    <td>
+                      <h5>${{ total }}</h5>
+                    </td>
+                  </tr>
 
-            </tbody>
-          </table>
+                </tbody>
+            </table>
+        </form>
+
+
           <div class="checkout_btn_inner float-right">
             <a class="btn_1" href="{% url 'product_list' %}">Continue Shopping</a>
             <a class="btn_1 checkout_btn_1" href="{% url 'checkout' %}">Proceed to checkout</a>
